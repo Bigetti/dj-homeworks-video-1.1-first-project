@@ -1,0 +1,8 @@
+first_project/venv/
+app/migrations/__pycache__/
+db.sqlite3
+__pycache__/
+first_project/__pycache__/
+ app/__pycache__/
+
+
