@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, reverse
-import datetime
+from datetime import datetime
 import os
+from django.urls import reverse
 
 
 
@@ -12,8 +13,8 @@ def home_view(request):
     # функцию `reverse`
     pages = {
         'Главная страница': reverse('home'),
-        'Показать текущее время': '',
-        'Показать содержимое рабочей директории': ''
+        'Показать текущее время':  reverse('current_time'),
+        'Показать содержимое рабочей директории': reverse('workdir_view'),
     }
     
     # context и параметры render менять не нужно
@@ -28,6 +29,7 @@ def current_time(request):
     # обратите внимание – здесь HTML шаблона нет, 
     # возвращается просто текст
     current_time = datetime.now().strftime('%H:%M:%S')
+    print (current_time)
     return HttpResponse(current_time)
 
 def workdir_view(request):
@@ -36,9 +38,9 @@ def workdir_view(request):
     # директории
     pages = {}
     for item in os.listdir(path='.'):
-        pages[item] = reverse('workdir')
+        pages[item] = reverse('workdir_view')
     context = {
         'pages': pages
     }
-    return render(request, f"app/workdir.html", context)
+    return HttpResponse(str(pages))
 

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from app.views import home_view, workdir_view, current_time
 
@@ -23,7 +23,7 @@ urlpatterns = [
     path('', home_view, name='home'),
     # Раскомментируйте код, чтобы данные урлы 
     # обрабатывались Django
-    path('current_time/', current_time, name='time'),
-    path('workdir/', workdir_view, name='workdir'),
+    path('current_time/', current_time, name='current_time'),
+    path('workdir_view/', workdir_view, name='workdir_view'),
     path('admin/', admin.site.urls),
 ]
