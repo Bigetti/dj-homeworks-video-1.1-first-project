@@ -36,11 +36,13 @@ def workdir_view(request):
     # по аналогии с `time_view`, напишите код,
     # который возвращает список файлов в рабочей 
     # директории
-    pages = {}
+    pages = []
     for item in os.listdir(path='.'):
-        pages[item] = reverse('workdir_view')
-    context = {
-        'pages': pages
-    }
-    return HttpResponse(str(pages))
+        pages.append(item)
+    # context = {
+    #     'pages': pages
+    # }
+    pages_str = '<br>'.join(f'{page}' for page in pages)
+
+    return HttpResponse(str(pages_str))
 
